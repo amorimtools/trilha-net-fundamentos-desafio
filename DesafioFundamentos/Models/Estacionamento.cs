@@ -6,20 +6,19 @@ namespace DesafioFundamentos.Models
         public decimal precoPorHora = 0;
         public List<string> veiculos = new List<string>();
 
-
         public void AdicionarVeiculo()
         {
-        
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-             string placa = Console.ReadLine();
-             veiculos.Add(placa);
+            string placa = Console.ReadLine();
+            veiculos.Add(placa);
         }
 
         public void RemoverVeiculo()
         {
-            Console.WriteLine("Digite a placa do veículo para remover:");string placa = Console.ReadLine();
+            Console.WriteLine("Digite a placa do veículo para remover:");
+            string placa = Console.ReadLine();
 
-            // Verifica se o veículo existe
+        
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
             {
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
@@ -41,14 +40,35 @@ namespace DesafioFundamentos.Models
             if (veiculos.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
-                 foreach (var veiculo in veiculos)
+                foreach (var veiculo in veiculos)
                 {
-                 Console.WriteLine(veiculo);
+                    Console.WriteLine(veiculo);
                 }
             }
             else
             {
                 Console.WriteLine("Não há veículos estacionados.");
+            }
+        }
+
+        public void AtualizarPlaca()
+        {
+            Console.WriteLine("Digite a placa que será atualizada");
+            string placaatual = Console.ReadLine();
+
+            if (veiculos.Contains(placaatual))
+            {
+                Console.WriteLine("Digite a nova placa");
+                string novaPlaca = Console.ReadLine();
+
+                int index = veiculos.IndexOf(placaatual);
+                veiculos[index] = novaPlaca;
+
+                Console.WriteLine("Placa atualizada com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Placa inválida. A placa não existe na lista.");
             }
         }
     }
